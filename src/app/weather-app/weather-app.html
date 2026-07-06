@@ -1,0 +1,27 @@
+<div class="container">
+
+    <h1>Weather Forecast</h1>
+
+    <div class="card-container">
+
+        @for (item of weather(); track item.date) {
+
+        <div class="weather-card">
+
+            <div class="icon">🌤️</div>
+
+            <h3>{{ item.summary }}</h3>
+
+            <p><strong>Date:</strong> {{ item.date }}</p>
+
+            <p>{{ item.temperatureC }} °C</p>
+
+            <p>{{ item.temperatureF }} °F</p>
+
+        </div>
+
+        }
+
+    </div>
+
+</div>

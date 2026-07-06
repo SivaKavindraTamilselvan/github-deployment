@@ -1,3 +1,17 @@
 import { Routes } from '@angular/router';
-
-export const routes: Routes = [];
+import { WeatherApp } from './weather-app/weather-app';
+export const routes: Routes = [
+  {
+    path: '',
+    redirectTo: 'weather',
+    pathMatch: 'full'
+  },
+  {
+    path: 'weather',
+    component: WeatherApp
+  },
+  {
+    path: '**',
+    redirectTo: 'weather'
+  }
+];
