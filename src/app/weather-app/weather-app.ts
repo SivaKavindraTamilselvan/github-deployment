@@ -19,17 +19,21 @@ export class WeatherApp {
   }
 
   ngOnInit() {
+    this.loadWeather();
+  }
+
+  loadWeather() {
     this.loading.set(true);
     this.error.set('');
 
     this.weatherService.getWeather().subscribe({
-      next: (response) => {
-        this.weather.set(response);
+      next: (res) => {
+        this.weather.set(res);
         this.loading.set(false);
       },
       error: () => {
-        this.error.set('Unable to load weather data. Please try again later.');
         this.loading.set(false);
+        this.error.set('Failed to load weather forecast. Please try again.');
       }
     });
   }
