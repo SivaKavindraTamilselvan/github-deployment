@@ -2,26 +2,48 @@
 
     <h1>Weather Forecast</h1>
 
-    <div class="card-container">
+    <button (click)="loadWeather()">Refresh</button>
 
-        @for (item of weather(); track item.date) {
+    @if (loading()) {
+        <p class="message">Loading...</p>
+    }
 
-        <div class="weather-card">
+    @else if (error()) {
+        <p class="error">{{ error() }}</p>
+    }
 
-            <div class="icon">🌤️</div>
+    @else {
 
-            <h3>{{ item.summary }}</h3>
+        <p><strong>Total Forecast Records:</strong> {{ weather().length }}</p>
 
-            <p><strong>Date:</strong> {{ item.date }}</p>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Temperature (°C)</th>
+                        <th>Temperature (°F)</th>
+                        <th>Summary</th>
+                    </tr>
+                </thead>
 
-            <p>{{ item.temperatureC }} °C</p>
+                <tbody>
 
-            <p>{{ item.temperatureF }} °F</p>
+                    @for (item of weather(); track item.date) {
 
+                    <tr [class.hot]="item.temperatureC > 30">
+                        <td>{{ item.date }}</td>
+                        <td>{{ item.temperatureC }}</td>
+                        <td>{{ item.temperatureF }}</td>
+                        <td>{{ item.summary }}</td>
+                    </tr>
+
+                    }
+
+                </tbody>
+            </table>
         </div>
 
-        }
-
-    </div>
+    }
 
 </div>
